@@ -30,7 +30,12 @@
           "ts": "never"
         }
       ],
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "camelcase": "off",
+      "class-methods-use-this": "off",
+      "no-useless-constructor": "off",
+      "no-return-await": "off",
+      "no-console": "off"
     },
     "settings": {
       "import/resolver": {
