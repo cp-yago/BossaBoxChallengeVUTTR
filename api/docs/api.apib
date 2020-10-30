@@ -1,0 +1,66 @@
+FORMAT: 1A
+HOST: http://localhost:3000/
+
+# VUTTR API
+
+Feito por Yago Cunha (cp-yago)
+
+# Group API
+
+## Sobre [/]
+
+API para a aplicação Very Useful Tools to Remember, repositório para gerenciar ferramentas onde os usuários conseguem cadastrar, listar, filtrar e deletar as ferramentas.
+
+# Group Tool
+
+## Tools [/tools]
+
+### Criar tool [POST]
+
++ Request Criar uma mensagem
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+    + Attributes (Tool)
+
++ Response 201 (application/json)
+    + Attributes (Created)
+
+
+### Listar todas as ferramentas [GET]
+
++ Response 200 (application/json)
+    + Attributes (array[Created])
+
+## Tool [/tools?tag={tag_name}]
+
++ Parameters
+    + tag_name: `github` (string) - Nome da tag para ser filtrada
+
+### Filtrar todas as ferramentas por tag [GET]
+
++ Response 200 (application/json)
+    + Attributes (array[Created])
+
+## Delete [/tools/{tool_id}]
+
++ Parameters
+    + tool_id: 1 (number) - Id da ferramenta
+
+### Deletar uma ferramenta pelo id [DELETE]
+
++ Response 200 (application/json)
+
+# Data Structures
+
+## Tool (object)
++ title: `Example tool title` (string) - Titúlo da ferramenta
++ link: `http://example.com` (string) - Link para a ferramenta
++ description: `Fake tool` (string) - Descrição da ferramenta
++ tags: `api` (array[string]) - Tags relacionadas a ferramenta
+
+## Created (Tool)
++ id (number) - Id da ferramenta
+
