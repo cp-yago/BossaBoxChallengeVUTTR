@@ -5,8 +5,6 @@ import ToolsController from '../controllers/ToolsController';
 const toolsRouter = Router();
 const toolsController = new ToolsController();
 
-console.log('chegou aqui');
-
 toolsRouter.post(
   '/',
   celebrate({
@@ -14,10 +12,12 @@ toolsRouter.post(
       title: Joi.string().required(),
       link: Joi.string().required(),
       description: Joi.string().required(),
-      tags: Joi.string().required(),
+      tags: Joi.array().required(),
     },
   }),
   toolsController.create,
 );
+
+toolsRouter.get('/', toolsController.show);
 
 export default toolsRouter;
