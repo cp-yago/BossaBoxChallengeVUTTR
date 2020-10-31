@@ -5,4 +5,6 @@ export default interface IToolsRepository {
   create(data: ICreateToolDTO): Promise<Tool>;
   list(): Promise<Tool[]>;
   findByTags(tag: string): Promise<Tool[] | undefined>;
+  remove(data: Tool): Promise<void>;
+  findById(id: string): Promise<Tool | undefined>;
 }

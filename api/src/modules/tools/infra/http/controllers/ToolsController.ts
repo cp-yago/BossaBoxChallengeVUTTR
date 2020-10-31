@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import ToolsRepository from '../../typeorm/repositories/ToolsRepository';
 import CreateToolService from '../../../services/CreateToolService';
 import ListToolService from '../../../services/ListToolService';
+import DeleteToolService from '../../../services/DeleteToolService';
 
 export default class UserController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -34,5 +35,17 @@ export default class UserController {
     );
 
     return response.json(filteredTools);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const toolsRepository = new ToolsRepository();
+
+    const deleteTool = new DeleteToolService(toolsRepository);
+
+    await deleteTool.execute({ id });
+
+    return response.status(204).send();
   }
 }

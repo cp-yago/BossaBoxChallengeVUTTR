@@ -36,6 +36,16 @@ class ToolsRepository implements IToolsRepository {
 
     return tools;
   }
+
+  public async remove(data: Tool): Promise<void> {
+    await this.ormRepository.remove(data);
+  }
+
+  public async findById(id: string): Promise<Tool | undefined> {
+    const tool = await this.ormRepository.findOne(id);
+
+    return tool;
+  }
 }
 
 export default ToolsRepository;
