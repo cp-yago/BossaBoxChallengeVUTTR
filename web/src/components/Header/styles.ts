@@ -67,11 +67,6 @@ export const SearchButton = styled.button`
   width: 100px;
   border-radius: 0px 10px 10px 0px;
   border: 0;
-
-
-  &:hover {
-    background-color: #FCAEAC;
-  }
 `;
 
 export const AddButton = styled.button`
@@ -88,9 +83,5 @@ export const AddButton = styled.button`
 
   svg {
     margin: 5px;
-  }
-
-  &:hover {
-    background-color: #FCAEAC;
   }
 `;
