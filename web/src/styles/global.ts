@@ -27,5 +27,10 @@ export default createGlobalStyle`
     cursor: pointer;
     background-color: #F95E5A;
     color: #fff;
+    border: 0;
+
+    &:hover {
+    background-color: #FCAEAC;
+  }
   }
 `;
