@@ -14,8 +14,8 @@ class Tool {
   @Column()
   description: string;
 
-  @Column()
-  tags: string;
+  @Column('simple-array')
+  tags: string[];
 }
 
 export default Tool;
