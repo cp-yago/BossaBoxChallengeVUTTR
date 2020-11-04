@@ -4,10 +4,19 @@ import { FiEdit, FiTrash } from 'react-icons/fi';
 
 import { Item, Button } from './styles';
 
-const ToolItem: React.FC = () => (
+interface ToolItemProps {
+  title: string;
+  link: string;
+  description: string;
+  tags: string[];
+}
+
+const ToolItem: React.FC<ToolItemProps> = ({
+  title, link, description, tags,
+}) => (
   <Item>
     <div className="links">
-      <a href="http://google.com">Notion</a>
+      <a href={link}>{title}</a>
       <div className="buttons">
         <Button>
           <FiEdit size={15} />
@@ -20,13 +29,13 @@ const ToolItem: React.FC = () => (
       </div>
     </div>
     <p>
-      Lorem Ipsum is simply dummy text industry.
-      Lorem Ipsum has been the industrys standard
-      dummy text ever since the 1500s
+      {description}
     </p>
-    <strong>#organization</strong>
-    <strong>#organization</strong>
-    <strong>#organization</strong>
+    {
+      tags.map((tag) => (
+        <strong>{`#${tag}`}</strong>
+      ))
+    }
   </Item>
 );
 
