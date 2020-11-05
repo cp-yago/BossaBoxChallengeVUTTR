@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { ToolsProvider } from './tools';
+import { ModalProvider } from './modal';
 
 const AppProvider: React.FC = ({ children }) => (
   <ToolsProvider>
-    {children}
+    <ModalProvider>
+      {children}
+    </ModalProvider>
   </ToolsProvider>
 );
 

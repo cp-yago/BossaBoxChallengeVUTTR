@@ -12,10 +12,18 @@ interface Tool {
   tags: string[];
 }
 
+interface AddToolFormData {
+  title: string;
+  link: string;
+  description: string;
+  tags: string;
+}
+
 interface ToolsContextProps {
   tools: Tool[];
   loadTools(): void;
   deleteTool(id: number): void;
+  handleCreateTool(data: AddToolFormData): Promise<void>;
 }
 
 const ToolsContext = createContext<ToolsContextProps>({} as ToolsContextProps);
@@ -36,14 +44,28 @@ const ToolsProvider: React.FC = ({ children }) => {
     setTools(toolsUpdated);
   }, [tools]);
 
+  const handleCreateTool = useCallback(async (data: AddToolFormData) => {
+    const tagsFormatted = data.tags.split(' ');
+
+    const requestData = { ...data, tags: tagsFormatted };
+
+    const response = await api.post('/tools', requestData);
+
+    const tool = response.data;
+
+    tools.push(tool);
+  }, [tools]);
+
   const value = useMemo(() => ({
     tools,
     loadTools,
     deleteTool,
+    handleCreateTool,
   }), [
     tools,
     loadTools,
     deleteTool,
+    handleCreateTool,
   ]);
 
   return (
