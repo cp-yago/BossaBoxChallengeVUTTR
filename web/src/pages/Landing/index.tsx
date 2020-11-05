@@ -22,6 +22,7 @@ const Landing: React.FC = () => {
         {
           tools.map((tool) => (
             <ToolItem
+              id={tool.id}
               key={tool.id}
               title={tool.title}
               link={tool.link}

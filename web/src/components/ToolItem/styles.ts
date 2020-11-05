@@ -20,7 +20,7 @@ export const Item = styled.li`
 
   .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 180px;
   }
 

@@ -5,7 +5,7 @@ import React, {
 import api from '../services/api';
 
 interface Tool {
-  id: number;
+  id: string;
   title: string;
   link: string;
   description: string;
@@ -22,7 +22,7 @@ interface AddToolFormData {
 interface ToolsContextProps {
   tools: Tool[];
   loadTools(): void;
-  deleteTool(id: number): void;
+  deleteTool(id: string): void;
   handleCreateTool(data: AddToolFormData): Promise<void>;
 }
 
@@ -34,7 +34,7 @@ const ToolsProvider: React.FC = ({ children }) => {
   const loadTools = useCallback(async () => {
     const response = await api.get('/tools');
     setTools(response.data);
-  }, []);
+  }, [tools]);
 
   const deleteTool = useCallback(async (id) => {
     await api.delete(`/tools/${id}`);
