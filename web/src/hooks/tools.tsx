@@ -19,11 +19,16 @@ interface AddToolFormData {
   tags: string;
 }
 
+interface ToolSearchProps {
+  search: string;
+}
+
 interface ToolsContextProps {
   tools: Tool[];
   loadTools(): void;
   deleteTool(id: string): void;
   handleCreateTool(data: AddToolFormData): Promise<void>;
+  handleSearchTools(data: ToolSearchProps): Promise<void>;
 }
 
 const ToolsContext = createContext<ToolsContextProps>({} as ToolsContextProps);
@@ -34,7 +39,7 @@ const ToolsProvider: React.FC = ({ children }) => {
   const loadTools = useCallback(async () => {
     const response = await api.get('/tools');
     setTools(response.data);
-  }, [tools]);
+  }, []);
 
   const deleteTool = useCallback(async (id) => {
     await api.delete(`/tools/${id}`);
@@ -54,18 +59,36 @@ const ToolsProvider: React.FC = ({ children }) => {
     const tool = response.data;
 
     tools.push(tool);
-  }, [tools]);
+
+    loadTools();
+  }, [loadTools, tools]);
+
+  const handleSearchTools = useCallback(async (data: ToolSearchProps) => {
+    const { search } = data;
+
+    console.log('chegou aqui: ', search);
+
+    const response = await api.get(`/tools?tag=${search}`);
+
+    const searchResponse = response.data as Tool[];
+
+    console.log(searchResponse);
+
+    setTools(searchResponse);
+  }, []);
 
   const value = useMemo(() => ({
     tools,
     loadTools,
     deleteTool,
     handleCreateTool,
+    handleSearchTools,
   }), [
     tools,
     loadTools,
     deleteTool,
     handleCreateTool,
+    handleSearchTools,
   ]);
 
   return (

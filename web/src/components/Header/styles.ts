@@ -37,6 +37,15 @@ export const Container = styled.div`
     align-items: center;
   }
 
+  .search-input {
+    height: 50px;
+    width: 500px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #CAD6FC;
+    border: 0;
+    padding-left: 20px;
+  }
+
   .checkbox {
     display: flex;
     align-items: center;

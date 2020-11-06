@@ -14,6 +14,8 @@ export const Container = styled.div`
   }
 
   li {
+    width: 60vw;
+    height: 150px;
     align-self: center;
     margin: 20px 0px;
   }

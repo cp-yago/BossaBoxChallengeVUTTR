@@ -10,7 +10,8 @@ const ModalDelete: React.FC = () => {
 
   const handleDeleteTool = useCallback((id) => {
     deleteTool(id);
-  }, [deleteTool]);
+    isDeleteModalOpen();
+  }, [deleteTool, isDeleteModalOpen]);
 
   return (
     <Container
